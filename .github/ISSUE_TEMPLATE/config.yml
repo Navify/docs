@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Navify Discord
+    url: https://discord.gg/VnevqPp2Rr
+    about: Get help from the community on Discord
+  - name: Navify CLI Issues
+    url: https://github.com/navify/cli/issues
+    about: Report issues with Navify CLI (not documentation)

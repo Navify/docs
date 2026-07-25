@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Official Navify documentation">
+  <meta name="theme-color" content="#08090e">
+  <title>Navify Docs</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <button id="menu" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <a class="brand" href="#overview"><img src="assets/logo.png" alt="" width="30" height="30">Navify Docs</a>
+    <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search documentation"><kbd>Ctrl K</kbd></label>
+    <a class="github" href="https://github.com/Navify/navify-cli">GitHub</a>
+  </header>
+  <aside>
+    <nav>
+      <b>Start</b>
+      <a href="#overview">Overview</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#installation">Installation</a>
+      <b>Customize</b>
+      <a href="#marketplace">Marketplace</a>
+      <a href="#themes">Themes</a>
+      <a href="#extensions">Extensions</a>
+      <a href="#apps">Apps</a>
+      <b>Develop</b>
+      <a href="#creator">Navify Creator</a>
+      <a href="#commands">CLI commands</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#uninstall">Uninstall</a>
+    </nav>
+  </aside>
+  <main>
+    <section id="overview" data-search="overview navify spotify customize introduction">
+      <small>DOCUMENTATION</small>
+      <h1>Navify</h1>
+      <p class="lead">Customize Spotify desktop with themes, extensions, apps, snippets, and a built-in Marketplace.</p>
+      <div class="note"><strong>Navify modifies the installed Spotify desktop client.</strong> It does not create a separate Spotify application.</div>
+      <div class="quick">
+        <a href="#installation"><strong>Install Navify</strong><span>Set up the CLI and Marketplace</span></a>
+        <a href="#themes"><strong>Add a theme</strong><span>Install and apply visual styles</span></a>
+        <a href="#creator"><strong>Build a project</strong><span>Create apps and extensions</span></a>
+      </div>
+    </section>
+    <section id="requirements" data-search="requirements spotify desktop windows macos linux">
+      <h2>Requirements</h2>
+      <ul>
+        <li>Spotify desktop installed from spotify.com</li>
+        <li>Spotify opened and signed in at least once</li>
+        <li>An internet connection for installation and Marketplace listings</li>
+        <li>PowerShell on Windows or a terminal on macOS and Linux</li>
+      </ul>
+    </section>
+    <section id="installation" data-search="installation setup windows macos linux powershell">
+      <h2>Installation</h2>
+      <div class="tabs">
+        <div class="tab-buttons">
+          <button class="active" data-tab="windows">Windows</button>
+          <button data-tab="macos">macOS</button>
+          <button data-tab="linux">Linux</button>
+        </div>
+        <div class="panel active" data-panel="windows">
+          <ol><li>Close Spotify completely.</li><li>Download the latest Navify release.</li><li>Run <code>install.bat</code>.</li><li>Open Spotify after installation completes.</li></ol>
+          <p>If PowerShell blocks an npm command, run its <code>.cmd</code> version, such as <code>create-navify-app.cmd</code>.</p>
+        </div>
+        <div class="panel" data-panel="macos">
+          <ol><li>Close Spotify completely.</li><li>Open Terminal in the Navify folder.</li><li>Run <code>chmod +x install.sh</code>.</li><li>Run <code>./install.sh</code> and reopen Spotify.</li></ol>
+        </div>
+        <div class="panel" data-panel="linux">
+          <ol><li>Close Spotify completely.</li><li>Open a terminal in the Navify folder.</li><li>Run <code>chmod +x install.sh</code>.</li><li>Run <code>./install.sh</code> and reopen Spotify.</li></ol>
+        </div>
+      </div>
+    </section>
+    <section id="marketplace" data-search="marketplace install themes snippets apps extensions reload">
+      <h2>Marketplace</h2>
+      <p>Marketplace becomes available inside Spotify after Navify is installed and applied. Catalog items are never installed automatically.</p>
+      <ol><li>Open Marketplace from the Spotify sidebar.</li><li>Choose Extensions, Themes, Snippets, or Apps.</li><li>Select an item and press Install.</li><li>Use Reload now when prompted.</li></ol>
+      <div class="note">Items without preview artwork display “No image.” Marketplace itself does not appear as an installed item.</div>
+    </section>
+    <section id="themes" data-search="themes folder path roaming config scheme apply default spotify">
+      <h2>Themes</h2>
+      <p>The default theme is normal Spotify. A custom theme is active only after it is installed and selected.</p>
+      <div class="table">
+        <div><strong>Windows</strong><code>%APPDATA%\navify\Themes</code></div>
+        <div><strong>macOS</strong><code>~/.config/navify/Themes</code></div>
+        <div><strong>Linux</strong><code>~/.config/navify/Themes</code></div>
+      </div>
+      <p>Each theme belongs in its own folder and should contain <code>user.css</code> and <code>color.ini</code>.</p>
+      <pre><code>navify config current_theme ThemeName
+navify config color_scheme SchemeName
+navify apply</code></pre>
+    </section>
+    <section id="extensions" data-search="extensions javascript install config">
+      <h2>Extensions</h2>
+      <p>Install an extension from Marketplace or place a compatible JavaScript file in the Navify Extensions folder.</p>
+      <pre><code>navify config extensions example.js
+navify apply</code></pre>
+    </section>
+    <section id="apps" data-search="custom apps applications install marketplace folder">
+      <h2>Apps</h2>
+      <p>Custom apps add complete pages to Spotify. Install from Marketplace or place an app folder in the Navify CustomApps directory.</p>
+      <pre><code>navify config custom_apps example
+navify apply</code></pre>
+    </section>
+    <section id="creator" data-search="creator create app extension build bat npm">
+      <h2>Navify Creator</h2>
+      <p>Navify Creator scaffolds and builds custom apps and extensions.</p>
+      <pre><code>create-navify-app.cmd
+create-navify-extension.cmd</code></pre>
+      <p>On macOS and Linux, omit <code>.cmd</code>. Run <code>build.bat</code> on Windows to build all creator packages.</p>
+    </section>
+    <section id="commands" data-search="commands cli apply backup restore config update">
+      <h2>CLI commands</h2>
+      <div class="table">
+        <div><code>navify apply</code><span>Apply the current configuration</span></div>
+        <div><code>navify backup apply</code><span>Create a backup and apply Navify</span></div>
+        <div><code>navify restore</code><span>Restore the original Spotify files</span></div>
+        <div><code>navify config</code><span>Read or change configuration values</span></div>
+        <div><code>navify update</code><span>Update Navify</span></div>
+        <div><code>navify -v</code><span>Show the installed version</span></div>
+      </div>
+    </section>
+    <section id="troubleshooting" data-search="troubleshooting fix missing blank slow theme reload">
+      <h2>Troubleshooting</h2>
+      <details><summary>Marketplace is missing</summary><p>Close Spotify, run <code>marketplace.bat</code>, choose Enable, and reopen Spotify after Navify applies.</p></details>
+      <details><summary>A theme does not appear</summary><p>Confirm it has its own folder containing <code>user.css</code> and <code>color.ini</code>, then reload Marketplace.</p></details>
+      <details><summary>Spotify opens to a blank page</summary><p>Run <code>navify restore</code>, update Spotify, open it once, close it, and install Navify again.</p></details>
+      <details><summary>Changes load slowly</summary><p>Disable unused apps, extensions, and animated themes, then apply Navify again.</p></details>
+    </section>
+    <section id="uninstall" data-search="uninstall remove restore">
+      <h2>Uninstall</h2>
+      <p>Close Spotify and run <code>uninstall navify.bat</code> on Windows. Use <code>navify restore</code> first on any supported platform.</p>
+    </section>
+    <div id="empty" hidden><h2>No results</h2><p>Try a different search term.</p></div>
+  </main>
+  <footer><span>Navify Documentation</span><a href="https://github.com/Navify/docs">Source</a></footer>
+</body>
+</html>
